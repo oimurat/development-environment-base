@@ -227,6 +227,23 @@ services:
             - kafka-service
         restart: unless-stopped
 
+    # --------------------------------------------------------
+    # Next.jsアプリケーション（フロントエンド）
+    # --------------------------------------------------------
+    next:
+        build:
+            context: ./frontend
+            dockerfile: src/Dockerfile
+        container_name: next
+        tty: true
+        volumes:
+            - ./frontend:/user/src/app
+        environment:
+            - WATCHPACK_POLLING=true # ホットリロード機能を有効
+        ports:
+            - "3000:3000"
+        command: sh -c "npm run dev"
+
 # --------------------------------------------------------
 # ボリューム定義（データの永続化用）
 # --------------------------------------------------------
