@@ -237,12 +237,11 @@ services:
         container_name: next
         tty: true
         volumes:
-            - ./frontend:/user/src/app
+            - ./frontend:/user/src/frontend
         environment:
             - WATCHPACK_POLLING=true # ホットリロード機能を有効
         ports:
             - "3000:3000"
-        command: sh -c "npm run dev"
 
 # --------------------------------------------------------
 # ボリューム定義（データの永続化用）
