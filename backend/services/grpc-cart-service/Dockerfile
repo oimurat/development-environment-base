@@ -10,10 +10,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY backend/shared /shared
 RUN pip install -e /shared
 
-RUN python -m grpc_tools.protoc \
-    -I /shared/proto \
-    --python_out=/app \
-    --grpc_python_out=/app \
-    /shared/proto/cart.proto
+# RUN python -m grpc_tools.protoc \
+#     -I /shared/proto \
+#     --python_out=/app \
+#     --grpc_python_out=/app \
+#     /shared/proto/cart.proto
 
-CMD ["python", "main.py"]
+CMD python -m grpc_tools.protoc -I /shared/proto --python_out=/app --grpc_python_out=/app /shared/proto/cart.proto && \
+    python -m debugpy --listen 0.0.0.0:5679 -m main

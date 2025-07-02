@@ -12,3 +12,4 @@ alembic==1.16.2
 psycopg2-binary==2.9.10
 aiokafka==0.12.0
 python-multipart==0.0.20
+debugpy==1.8.14

@@ -8,8 +8,13 @@ services:
             dockerfile: backend/services/graphql-service/Dockerfile
         container_name: graphql-service
         ports:
-            - "8000:8000" # ホストの8000番ポート → コンテナの8000番ポートに接続
+            - "8000:8000"
+            - "5678:5678" # デバッグ用ポート
         restart: unless-stopped
+        # 開発中のライブリロードのためにボリュームをマウント（推奨）
+        volumes:
+            - ./backend/services/graphql-service/app:/app
+            - ./backend/shared:/shared
 
     # --------------------------------------------------------
     # 共通データベース（PostgreSQL）
@@ -38,6 +43,10 @@ services:
         container_name: grpc-cart-service
         ports:
             - "50051:50051" # gRPC通信用ポート
+            - "5679:5679" # デバッグ用ポート
+        volumes:
+            - ./backend/services/grpc-cart-service/app:/app
+            - ./backend/shared:/shared
         restart: unless-stopped
 
     # --------------------------------------------------------
