@@ -56,19 +56,25 @@
         },
         {
             "name": "Next.js: debug full stack",
-            "type": "node",
+            "type": "node-terminal",
             "request": "launch",
-            "program": "${workspaceFolder}/frontend/node_modules/next/dist/bin/next",
-            "runtimeArgs": ["--inspect"],
-            "skipFiles": ["<node_internals>/**"],
+            "command": "npm run dev",
             "cwd": "${workspaceFolder}/frontend",
             "serverReadyAction": {
                 "pattern": "- Local:.+(https?://.+)",
                 "uriFormat": "%s",
-                "action": "debugWithChrome",
-                "killOnServerStop": true,
-                "webRoot": "${workspaceFolder}"
+                "action": "debugWithChrome"
             }
+        },
+        {
+            "name": "Docker: Attach to Next.js",
+            "type": "node",
+            "request": "attach",
+            "port": 9231,
+            "address": "localhost",
+            "localRoot": "${workspaceFolder}/frontend",
+            "remoteRoot": "/user/src/frontend",
+            "restart": true
         }
     ]
 }

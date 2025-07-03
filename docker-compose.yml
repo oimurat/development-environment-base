@@ -248,8 +248,10 @@ services:
             - ./frontend:/user/src/frontend
         environment:
             - WATCHPACK_POLLING=true # ホットリロード機能を有効
+        command: npm run debug
         ports:
             - "3000:3000"
+            - "9231:9231"
 
 # --------------------------------------------------------
 # ボリューム定義（データの永続化用）
