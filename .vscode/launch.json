@@ -6,7 +6,7 @@
             "type": "debugpy",
             "request": "attach",
             "connect": {
-                "host": "localhost", // ホストマシン（VSCodeが実行されている場所）
+                "host": "localhost",
                 "port": 5678 // デバッガがリッスンするポート
             },
             "pathMappings": [
@@ -28,16 +28,14 @@
             "request": "attach",
             "connect": {
                 "host": "localhost",
-                "port": 5679 // gRPCサービスのデバッグ用ポートに合わせて変更が必要な場合があります
+                "port": 5679
             },
             "pathMappings": [
                 {
-                    // ローカルのgRPCサービスディレクトリをコンテナ内の/appにマッピング
                     "localRoot": "${workspaceFolder}/backend/services/grpc-cart-service/app",
                     "remoteRoot": "/app"
                 },
                 {
-                    // 共有ライブラリのマッピング（共通であればそのまま）
                     "localRoot": "${workspaceFolder}/backend/shared",
                     "remoteRoot": "/shared"
                 }
